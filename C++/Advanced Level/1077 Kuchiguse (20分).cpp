@@ -7,7 +7,7 @@ int main(int argc, char const *argv[])
 {
 	int N;
 	cin >> N;
-	string ans = "";
+	string ans;
 	cin.get();
 	for (int i = 0; i < N; ++i) {
 		getline(cin, s[i]);
