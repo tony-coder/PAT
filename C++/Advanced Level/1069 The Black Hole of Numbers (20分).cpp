@@ -8,6 +8,7 @@ bool cmp(char a, char b) {
 int main(int argc, char const *argv[])
 {
 	string s;
+	stringstream ss;
 	cin >> s;
 
 	while (true) {
@@ -15,14 +16,20 @@ int main(int argc, char const *argv[])
 			s.push_back('0');
 		int Max, Min;
 		sort(s.begin(), s.end());
-		Min = stoi(s);
+		ss << s;
+		ss >> Min;
+		ss.clear();
 		sort(s.begin(), s.end(), cmp);
-		Max = stoi(s);
+		ss << s;
+		ss >> Max;
+		ss.clear();
 		printf("%04d - %04d = %04d\n", Max, Min, Max - Min );
 
 		if (Max - Min == 6174 || Max - Min == 0)
 			break;
-		s = to_string(Max - Min);
+		ss << Max - Min;
+		ss >> s;
+		ss.clear();
 	}
 
 	return 0;
