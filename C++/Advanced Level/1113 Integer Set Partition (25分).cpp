@@ -7,25 +7,13 @@ int main(int argc, char const *argv[])
 {
 	int N;
 	scanf("%d", &N);
-
 	for (int i = 0; i < N; ++i)
 		scanf("%d", &v[i]);
 	sort(v, v + N);
-	int Max = 0, Min = 0, i;
-	if (N % 2 == 0) {
-		for (i = 0; i < N / 2; ++i)
-			Min += v[i];
-		for (; i < N; ++i)
-			Max += v[i];
-		printf("0 %d\n", Max - Min);
-	} else {
-		for (i = 0; i < N / 2; ++i)
-			Min += v[i];
-		i++;
-		for (; i < N; ++i)
-			Max += v[i];
-		printf("1 %d\n", max(Max + v[N / 2] - Min, Max - v[N / 2] - Min));
-	}
+	if (N % 2 == 0)
+		printf("0 %d\n", accumulate(v + N / 2, v + N, 0) - accumulate(v, v + N / 2, 0));
+	else
+		printf("1 %d\n", accumulate(v + N / 2, v + N, 0) - accumulate(v, v + N / 2, 0));
 
 	return 0;
 }
