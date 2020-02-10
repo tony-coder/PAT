@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class TestMain {
+public class Main {
     private static String reverse(String str) {
         return new StringBuffer(str).reverse().toString();
     }
