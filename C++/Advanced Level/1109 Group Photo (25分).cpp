@@ -16,17 +16,18 @@ int main(int argc, char const *argv[])
 	for (int i = 0; i < N; ++i)
 		cin >> v[i].name >> v[i].height;
 	sort(v.begin(), v.end(), [](node & a, node & b) {return a.height == b.height ? a.name > b.name : a.height < b.height;});
-	int row = N / K, now;
+	int row = K, now;
+	K = N / row;
 	for (now = 0; now < (row - 1)*K; now += K) {
 		int i = now + K / 2 - 1, j = now + K / 2 + 1;
 		int pos = now + K - 1;
 		ans[now + K / 2] = v[pos--].name;
 		for (int k = 0; k < K - 1; ++k) {
-			if (k % 2 == 0)
+			if (k % 2 == 0) {
 				ans[i--] = v[pos--].name;
-			else
+			} else {
 				ans[j++] = v[pos--].name;
-
+			}
 		}
 	}
 	int col = N - (row - 1) * K;
@@ -52,7 +53,7 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 /*
-10 4
+10 2
 Tom 188
 Mike 170
 Eva 168
