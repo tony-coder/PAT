@@ -1,55 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 const int maxn = 1000 + 10;
 
 vector<int> g[maxn];
-bool vis[maxn];
+int in[maxn];  //入度
 
-void addEdge(int v, int u) {
-	g[v].push_back(u);
-}
-
-bool dfs(int v) {
-	if (vis[v])
-		return false;
-	for (int i = 0; i < g[v].size(); ++i) {
-		if (!dfs(g[v][i]))
-			return false;
-	}
-	return true;
+void addEdge(int u, int v) {
+	g[u].push_back(v);
 }
 
 int main(int argc, char const *argv[])
 {
-	int N, M;
+	int N, M, K, i;
 	scanf("%d%d", &N, &M);
-	for (int i = 0; i < M; ++i) {
+	for (i = 0; i < M; ++i) {
 		int u, v;
 		scanf("%d%d", &u, &v);
 		addEdge(u, v);
+		in[v]++;  //入度加1
 	}
-	int K;
 	scanf("%d", &K);
 	vector<int> ans;
-	for (int i = 0; i < K; ++i) {
-		memset(vis, false, sizeof(vis));
-		vector<int> v(N);
-		for (int i = 0; i < N; ++i)
-			scanf("%d", &v[i]);
-		int j;
-		for (j = 0; j < N; ++j) {
-			if (!dfs(v[j]))
-				break;
-			vis[v[j]] = true;
+	for (i = 0; i < K; ++i) {
+		bool judge = true;
+		vector<int> tin(in, in + N + 1);
+		for (int j = 0; j < N; ++j) {
+			int t;
+			scanf("%d", &t);
+			if (tin[t] != 0) //如果入度不为0，则为假
+				judge = false;
+			for (auto it : g[t]) //将该点对应的入度减去1
+				tin[it]--;
 		}
-		if (j != N)
+		if (!judge)
 			ans.push_back(i);
 	}
-	int k;
-	for (k = 0; k < ans.size() - 1; ++k)
-		printf("%d ", ans[k]);
-	printf("%d\n", ans[k]);
+	for (i = 0; i < ans.size() - 1; ++i)
+		printf("%d ", ans[i]);
+	printf("%d\n", ans[i]);
 
 	return 0;
 }
