@@ -6,10 +6,11 @@ struct node {
 	char ch;
 	int next;
 } List[maxn];
+map<int, int>mp;
 
 int main(int argc, char const *argv[])
 {
-	int addr1, addr2, N, i, j;
+	int addr1, addr2, N, i;
 	scanf("%d %d %d", &addr1, &addr2, &N);
 	for (i = 0; i < N; ++i) {
 		int address, next;
@@ -17,12 +18,11 @@ int main(int argc, char const *argv[])
 		scanf("%d %c %d", &address, &ch, &next);
 		List[address] = {ch, next};
 	}
-	for ( i = addr1; i != -1; i = List[i].next) {
-		for ( j = addr2; j != -1; j = List[j].next) {
-			if (i == j)
-				break;
-		}
-		if (j != -1)
+	for ( i = addr1; i != -1; i = List[i].next)
+		mp[i]++;
+	for ( i = addr2; i != -1; i = List[i].next) {
+		mp[i]++;
+		if (mp[i] == 2)
 			break;
 	}
 	if (i != -1)
