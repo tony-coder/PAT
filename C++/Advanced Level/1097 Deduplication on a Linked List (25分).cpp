@@ -4,61 +4,37 @@ const int maxn = 1e6 + 10;
 const int maxm = 1e4 + 10;
 struct node
 {
-	int key, next, pre;
-	node(): key(0), next(-1), pre(-1) {}
+	int address, key, next;
 } List[maxn];
 int vis[maxm] = {0};
 
 int main(int argc, char const *argv[])
 {
-	int l1 = -1, l2 = -1, N;
-	scanf("%d%d", &l1, &N);
+	int l, N, i;
+	scanf("%d%d", &l, &N);
 	for (int i = 0; i < N; ++i) {
 		int address, key, next;
 		scanf("%d%d%d", &address, &key, &next);
-		List[address].key = key;
-		List[address].next = next;
-		List[next].pre = address;
+		List[address] = {address, key, next};
 	}
-	int tail = -1, i = l1;
-	while (i != -1) {
+	vector<node> v1, v2;
+	for (i = l; i != -1; i = List[i].next) {
 		if (vis[abs(List[i].key)] == 0) {
+			v1.push_back(List[i]);
 			vis[abs(List[i].key)]++;
-			i = List[i].next;
 		}
 		else {
-			List[List[i].pre].next = List[i].next;
-			if (List[i].next != -1)
-				List[List[i].next].pre = List[i].pre;
-			int tmp = List[i].next;
-			if (l2 == -1) {
-				l2 = i;
-				List[l2].next = -1;
-				List[l2].pre = -1;
-				tail = l2;
-			} else {
-				List[tail].next = i;
-				List[i].pre = tail;
-				List[i].next = -1;
-				tail = i;
-			}
-			i = tmp;
+			v2.push_back(List[i]);
 		}
 	}
-	for (i = l1; i != -1; i = List[i].next) {
-		if (List[i].next != -1)
-			printf("%05d %d %05d\n", i, List[i].key, List[i].next);
-		else
-			printf("%05d %d %d\n", i, List[i].key, -1);
-	}
-
-	for (i = l2; i != -1; i = List[i].next) {
-		if (List[i].next != -1)
-			printf("%05d %d %05d\n", i, List[i].key, List[i].next);
-		else
-			printf("%05d %d %d\n", i, List[i].key, -1);
-	}
-
+	for (i = 0; i < v1.size() - 1; i++)
+		printf("%05d %d %05d\n", v1[i].address , v1[i].key, v1[i + 1].address);
+	printf("%05d %d %d\n", v1[i].address, v1[i].key, -1 );
+	if (v2.size() == 0)
+		return 0;
+	for (i = 0; i < v2.size() - 1; i++)
+		printf("%05d %d %05d\n", v2[i].address , v2[i].key, v2[i + 1].address);
+	printf("%05d %d %d\n", v2[i].address, v2[i].key, -1 );
 
 	return 0;
 }
