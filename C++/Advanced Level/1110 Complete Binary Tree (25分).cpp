@@ -8,7 +8,7 @@ struct node
 } tree[maxn];
 int vis[maxn];
 
-int Max = -1, ans;
+int Max = -1, ans, N;
 void dfs(int root, int index) {
 	if (index > Max) {
 		ans = root;
@@ -20,9 +20,30 @@ void dfs(int root, int index) {
 		dfs(tree[root].right, index * 2 + 1);
 }
 
+// 层序遍历判断
+bool isCBT(int root) {
+	int cnt = 0;
+	queue<int> q;
+	q.push(root);
+	while (!q.empty()) {
+		int top = q.front();
+		q.pop();
+		if (top != -1) {
+			ans = top;
+			cnt++;
+			q.push(tree[top].left);
+			q.push(tree[top].right);
+		} else {
+			if (cnt == N)
+				return true;
+			else
+				return false;
+		}
+	}
+}
+
 int main(int argc, char const *argv[])
 {
-	int N;
 	cin >> N;
 	for (int i = 0; i < N; ++i) {
 		string left, right;
