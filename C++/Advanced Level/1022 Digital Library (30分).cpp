@@ -1,6 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void show(map<string, set<int> >&mp, string target) {
+	if (mp[target].size() == 0) {
+		printf("Not Found\n");
+		return;
+	}
+	for (auto t : mp[target])
+		printf("%07d\n", t);
+}
+
 int main(int argc, char const *argv[])
 {
 	int N;
@@ -34,42 +43,16 @@ int main(int argc, char const *argv[])
 		getline(cin, query);
 		cout << query << endl;
 		target = query.substr(3);
-		if (query[0] == '1') {
-			if (title_mp[target].size() == 0) {
-				printf("Not Found\n");
-				continue;
-			}
-			for (auto t : title_mp[target])
-				printf("%07d\n", t);
-		} else if (query[0] == '2') {
-			if (author_mp[target].size() == 0) {
-				printf("Not Found\n");
-				continue;
-			}
-			for (auto t : author_mp[target])
-				printf("%07d\n", t);
-		} else if (query[0] == '3') {
-			if (keyword_mp[target].size() == 0) {
-				printf("Not Found\n");
-				continue;
-			}
-			for (auto t : keyword_mp[target])
-				printf("%07d\n", t);
-		} else if (query[0] == '4') {
-			if (publisher_mp[target].size() == 0) {
-				printf("Not Found\n");
-				continue;
-			}
-			for (auto t : publisher_mp[target])
-				printf("%07d\n", t);
-		} else if (query[0] == '5') {
-			if (year_mp[target].size() == 0) {
-				printf("Not Found\n");
-				continue;
-			}
-			for (auto t : year_mp[target])
-				printf("%07d\n", t);
-		}
+		if (query[0] == '1')
+			show(title_mp, target);
+		else if (query[0] == '2')
+			show(author_mp, target);
+		else if (query[0] == '3')
+			show(keyword_mp, target);
+		else if (query[0] == '4')
+			show(publisher_mp, target);
+		else if (query[0] == '5')
+			show(year_mp, target);
 	}
 
 	return 0;
