@@ -2,36 +2,35 @@
 using namespace std;
 const int maxn = 1e5 + 10;
 
-int a[maxn];
-int position[maxn];
+int pos[maxn];
 int main(int argc, char const *argv[])
 {
 	int N;
 	scanf("%d", &N);
+	int left = N - 1;
 	for (int i = 0; i < N; ++i) {
-		scanf("%d", &a[i]);
-		position[a[i]] = i;
+		int t;
+		scanf("%d", &t);
+		pos[t] = i;
+		if (t == i && t != 0)
+			left--;
 	}
-	int cnt = 0, i;
-	while (true) {
-		bool flag = true;
-		for (i = 0; i < N; ++i) {
-			if (a[i] != i) {
-				flag = false;
-				break;
-			}
+
+	int cnt = 0, k = 1;  //存放除0之外当前不在本位上的最小的数
+	while (left > 0) {
+		if (pos[0] == 0) {
+			while (k < N && pos[k] == k)
+				k++;
+			swap(pos[0], pos[k]);
+			cnt++;
 		}
-		if (flag)
-			break;
-		cnt++;
-		if (position[0] != 0) {
-			swap(a[position[0]], a[position[position[0]]]);
-			swap(position[0], position[position[0]]);
-		} else {
-			swap(position[0], position[a[i]]);
-			swap(a[0], a[i]);
+		while (pos[0] != 0) {
+			swap(pos[0], pos[pos[0]]);
+			cnt++;
+			left--;
 		}
 	}
+
 	printf("%d\n", cnt);
 
 	return 0;
