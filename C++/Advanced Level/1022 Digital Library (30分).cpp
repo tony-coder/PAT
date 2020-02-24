@@ -5,15 +5,10 @@ int main(int argc, char const *argv[])
 {
 	int N;
 	cin >> N;
-	map<string, set<int> > title_mp;
-	map<string, set<int> > author_mp;
-	map<string, set<int> > keyword_mp;
-	map<string, set<int> > publisher_mp;
-	map<int, set<int> > year_mp;
+	map<string, set<int> > title_mp, author_mp, keyword_mp, publisher_mp, year_mp;
 	for (int i = 0; i < N; ++i) {
 		int id;
-		string title, author, keywords, publisher;
-		int year;
+		string title, author, keywords, publisher, year;
 		cin >> id;
 		cin.get();
 		getline(cin, title);
@@ -68,11 +63,11 @@ int main(int argc, char const *argv[])
 			for (auto t : publisher_mp[target])
 				printf("%07d\n", t);
 		} else if (query[0] == '5') {
-			if (year_mp[stoi(target)].size() == 0) {
+			if (year_mp[target].size() == 0) {
 				printf("Not Found\n");
 				continue;
 			}
-			for (auto t : year_mp[stoi(target)])
+			for (auto t : year_mp[target])
 				printf("%07d\n", t);
 		}
 	}
