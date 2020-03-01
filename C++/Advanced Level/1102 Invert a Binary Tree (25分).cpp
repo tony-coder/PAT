@@ -7,8 +7,7 @@ bool vis[maxn];
 vector<int> inorder, levelorder;
 
 void in_order(int root) {
-	if (root == -1)
-		return;
+	if (root == -1)return;
 	in_order(Right[root]);
 	inorder.push_back(root);
 	in_order(Left[root]);
@@ -17,12 +16,10 @@ void in_order(int root) {
 void level_order(int root) {
 	queue<int> q;
 	q.push(root);
-
 	while (!q.empty()) {
 		int tmp = q.front();
 		q.pop();
 		levelorder.push_back(tmp);
-
 		if (Right[tmp] != -1)
 			q.push(Right[tmp]);
 		if (Left[tmp] != -1)
