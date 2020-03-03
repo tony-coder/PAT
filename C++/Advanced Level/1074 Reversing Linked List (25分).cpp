@@ -2,8 +2,7 @@
 using namespace std;
 const int maxn = 1e6 + 10;
 
-struct node
-{
+struct node {
 	int address, data, next;
 } List[maxn];
 
