@@ -42,7 +42,7 @@ int main(int argc, char const *argv[])
 		memset(vis, -1, sizeof(layer));
 		ans = 0;
 		dfs(id, 0);
-		for (int i = 1; i <= N ; ++i)  ////遍历layer数组，元素>0的即为符合条件的人，进行递增
+		for (int i = 1; i <= N ; ++i)  //遍历layer数组，元素>0的即为符合条件的人，进行递增
 			ans += layer[i] > 0 ? 1 : 0;
 		cout << ans << endl;
 	}
