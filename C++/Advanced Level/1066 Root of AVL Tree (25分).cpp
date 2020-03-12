@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node
-{
+struct node {
 	int value;
 	node* left;
 	node* right;
@@ -18,9 +17,7 @@ int Height(node* p) {
 
 /*右旋*/
 node* SingleRotateWithLeft(node* K2) {
-	node* K1;
-
-	K1 = K2->left;
+	node* K1 = K2->left;
 	K2->left = K1->right;
 	K1->right = K2;
 	K2->height = max(Height(K2->left), Height(K2->right)) + 1;
@@ -31,9 +28,7 @@ node* SingleRotateWithLeft(node* K2) {
 
 /*左旋*/
 node* SingleRotateWithRight(node* K2) {
-	node* K1;
-
-	K1 = K2->right;
+	node* K1 = K2->right;
 	K2->right = K1->left;
 	K1->left = K2;
 	K2->height = max(Height(K2->left), Height(K2->right)) + 1;
