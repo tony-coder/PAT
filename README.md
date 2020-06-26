@@ -28,3 +28,7 @@ Solutions for PAT
             - upper_bound(num, num+size, x)-num:大于x的第一个数的下标 
     
 - dp
+    - 背包问题
+        - 01背包+构造最优解
+        - 完全背包
+        - 多重背包
