@@ -6,6 +6,12 @@ Solutions for PAT
 - 数据结构
 - 图论
     - 最短路问题
+        - Dijkstra 单源最短路
+        - Dijkstra+ 堆优化
+        - 单源最短路 bellman ford 算法 可以处理负边权图
+        - SPFA
+        - 多源最短路 Floyd Warshall 算法
+    - 拓扑排序
     - 树
         - 遍历
             - 先序遍历 递归、非递归实现
