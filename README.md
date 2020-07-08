@@ -95,6 +95,7 @@ Solutions for PAT
         - sort, stable_sort
         - fill
         - swap
+        - reverse
 - C++11
     - Lambda
     - auto
