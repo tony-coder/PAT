@@ -4,6 +4,23 @@ Solutions for PAT
 ### 熟练掌握知识点
 - 字符串
 - 数据结构
+    - 线性表
+        - 链表模拟
+            - 逆转
+            - 排序
+            - 增删改查
+    - 栈
+        - 中缀转后缀表达式
+        - 后缀表达式运算
+        - 单调栈
+    - 队列
+        - 模拟排队
+    - 堆
+        - 最大堆
+        - 最小堆
+    - 哈希散列
+        - 平方探测法 1078
+        - 平均搜索时间 1145
 - 图论
     - 最短路问题
         - Dijkstra 单源最短路
@@ -25,6 +42,14 @@ Solutions for PAT
     - 平衡树
         - 判断平衡性
         - 建立平衡树
+    - 并查集
+        - 路径优化
+- 排序
+    - 插入排序
+    - 归并排序
+    - 快速排序
+    - 堆排序
+    - 拓扑排序 1146
 - 暴力
     - 搜索
         - DFS + 剪枝优化
@@ -42,11 +67,37 @@ Solutions for PAT
         - 小于、小于等于
         - 相关stl
             - binary_search
-            - lower_bound(num, num+size, x)-num:大于等于x的第一个数的下标 
-            - upper_bound(num, num+size, x)-num:大于x的第一个数的下标 
-    
+            - lower_bound(num, num+size, x)-num:大于等于x的第一个数的下标
+            - upper_bound(num, num+size, x)-num:大于x的第一个数的下标
 - dp
     - 背包问题
         - 01背包+构造最优解
         - 完全背包
         - 多重背包
+    - LIS 最长递增子序列
+    - LCS 最长公共子序列LCS
+    - 整数拆分
+- STL
+    - string
+    - vector
+    - List
+    - set
+    - map
+    - stack
+    - queue
+    - priority_queue
+    - algorithm
+        - max, max_element
+        - min, min_element
+        - lower_bound
+        - upper_bound
+        - binary_search
+        - sort, stable_sort
+        - fill
+        - swap
+- C++11
+    - Lambda
+    - auto
+    - std::to_string
+    - stoi，stod，stof，stol，stold，stoll，stoul，stoull
+- 优化
