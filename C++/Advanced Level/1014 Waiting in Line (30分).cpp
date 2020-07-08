@@ -50,7 +50,6 @@ int main(int argc, char const *argv[])
 		for (int j = 0; j < deal.size(); ++j) {
 			id = windows[deal[j]].front();
 			// printf("%d %d\n", id, customers[id].end_time);
-
 			current = customers[id].end_time;
 			windows[deal[j]].pop();
 			// 更新下一用户信息
@@ -78,6 +77,5 @@ int main(int argc, char const *argv[])
 			printf("%02d:%02d\n", hh, mm );
 		}
 	}
-
 	return 0;
 }
