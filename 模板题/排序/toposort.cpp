@@ -4,8 +4,7 @@
 #include <queue>
 using namespace std;
 
-class Graph
-{
+class Graph {
 public:
 	Graph(int v = 0);
 	~Graph();
@@ -20,8 +19,7 @@ private:
 	//vector<int> indegree;
 };
 
-Graph::Graph(int v)
-{
+Graph::Graph(int v) {
 	this->v = v;
 	adj = new list<int>[v];
 
@@ -30,29 +28,25 @@ Graph::Graph(int v)
 		indegree[i] = 0;
 }
 
-Graph::~Graph()
-{
+Graph::~Graph() {
 	delete[] adj;
 	delete[] indegree;
 }
 
-void Graph::addEdge(int v, int w)
-{
+void Graph::addEdge(int v, int w) {
 	adj[v].push_back(w);
 	++indegree[w];
 }
 
-bool Graph::toposort()
-{
-	for (int i = 0; i < v; ++i)
-	{
+bool Graph::toposort() {
+	// 将所有入度为0的结点加入队列
+	for (int i = 0; i < v; ++i) {
 		if (indegree[i] == 0)
 			q.push(i);
 	}
 
 	int count = 0;	//记数，记录当期已经输出的顶点数
-	while (!q.empty())
-	{
+	while (!q.empty()) {
 		int v = q.front();
 		q.pop();
 
