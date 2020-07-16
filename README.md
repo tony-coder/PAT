@@ -3,12 +3,19 @@ Solutions for PAT
 
 ### 熟练掌握知识点
 - 字符串
+    - 模拟 熟练string相关方法的使用
     - KMP
     - 回文串Manacher
     - 字典树 
 - 数学
-    - [ ] 大整数模拟
+    - [ ] 大整数模拟（推荐用Java解决）
+        - [ ] 大整数加法
+        - [ ] 大整数减法
+        - [ ] 大整数乘法
+        - [ ] 大整数除法
     - [ ] 素数
+        - [x] 素数筛
+        - 区间筛
     - [ ] 合数分解
     - [ ] 逆元
     - [ ] 快速幂, 矩阵快速幂
@@ -29,8 +36,8 @@ Solutions for PAT
         - [ ] 最大堆
         - [ ] 最小堆
     - [ ] 哈希散列
-        - [ ] 平方探测法 A1078
-        - [ ] 平均搜索时间 A1145
+        - [x] 平方探测法 A1078
+        - [x] 平均搜索时间 A1145
 - [ ] 图论
     - [ ] 最短路问题
         - [ ] Dijkstra 单源最短路
@@ -114,3 +121,4 @@ Solutions for PAT
     - std::to_string
     - stoi，stod，stof，stol，stold，stoll，stoul，stoull
 - 优化
+    - IO优化
