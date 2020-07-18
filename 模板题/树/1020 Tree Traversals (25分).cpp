@@ -13,20 +13,19 @@ int in[50];
 
 //后序和先序遍历提供根节点位置，然后再中序序列中区分出左子树和右子树，递归建树
 //从0开始
-node* createTree(int postLeft, int postRight, int intLeft, int inRight)
+node* createTree(int postLeft, int postRight, int inLeft, int inRight)
 {
 	if (postLeft > postRight)
 		return NULL;
 	int k;
-	for (k = intLeft; k <= inRight; ++k)
-	{
+	for (k = inLeft; k <= inRight; ++k) {
 		if (in[k] == post[postRight])
 			break;
 	}
-	int numLeft = k - intLeft;
+	int numLeft = k - inLeft;
 	node* root = new node;
 	root->value = post[postRight];
-	root->left = createTree(postLeft, postLeft + numLeft - 1, intLeft, k - 1);
+	root->left = createTree(postLeft, postLeft + numLeft - 1, inLeft, k - 1);
 	root->right = createTree(postLeft + numLeft, postRight - 1, k + 1, inRight);
 	return root;
 }
