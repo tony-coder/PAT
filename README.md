@@ -3,12 +3,12 @@ Solutions for PAT
 
 ### 熟练掌握知识点
 - 字符串
-    -[ ] 模拟 熟练string相关方法的使用
+    - [ ] 模拟 熟练string相关方法的使用
         -[x] 字符串与数字的相互准换 A1069 (C风格、c++ stringstream、c++11函数 stoi、to_string)
         -[x] 大小写转换 tolower(), toupper() A1071
         -[ ] 模拟科学计数法 A1073
     - KMP
-    -[ ] 回文串Manacher
+    - [ ] 回文串Manacher
     - 字典树 
 - 数学
     - [ ] 大整数模拟（推荐用Java解决）
