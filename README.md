@@ -174,7 +174,7 @@ Solutions for PAT
     - map
     - stack
     - queue
-    - priority_queue
+    - priority_queue 最大堆、最小堆
     - algorithm
         - max, max_element
         - min, min_element
