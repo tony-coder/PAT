@@ -25,6 +25,7 @@ node* createTree(int postLeft, int postRight, int inLeft, int inRight)
 	int numLeft = k - inLeft;
 	node* root = new node;
 	root->value = post[postRight];
+	// 注意边界 postLeft + numLeft - 1
 	root->left = createTree(postLeft, postLeft + numLeft - 1, inLeft, k - 1);
 	root->right = createTree(postLeft + numLeft, postRight - 1, k + 1, inRight);
 	return root;
