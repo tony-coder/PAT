@@ -10,19 +10,19 @@ struct node {
 	node*right;
 };
 
-node* build(int postLeft, int posRight, int inLeft, int inRight) {
-	if (postLeft > posRight)
+node* build(int postLeft, int postRight, int inLeft, int inRight) {
+	if (postLeft > postRight)
 		return nullptr;
 	int i, numLeft;
 	for (i = inLeft; i <= inRight; i++) {
-		if (in[i] == post[posRight])
+		if (in[i] == post[postRight])
 			break;
 	}
 	numLeft = i - inLeft;
 	node* root = new node;
-	root->val = post[posRight];
+	root->val = post[postRight];
 	root->left = build(postLeft, postLeft + numLeft - 1, inLeft, i - 1);
-	root->right = build(postLeft + numLeft, posRight - 1, i + 1, inRight);
+	root->right = build(postLeft + numLeft, postRight - 1, i + 1, inRight);
 	return root;
 }
 
