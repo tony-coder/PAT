@@ -32,7 +32,7 @@ node* SingleRotateWithRight(node* K2) {
 	K2->right = K1->left;
 	K1->left = K2;
 	K2->height = max(Height(K2->left), Height(K2->right)) + 1;
-	K1->height = max(Height(K1->right), K2->height);
+	K1->height = max(Height(K1->right), K2->height) + 1;
 
 	return K1;
 }
