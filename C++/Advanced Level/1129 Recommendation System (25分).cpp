@@ -5,8 +5,8 @@ const int maxn = 1e5;
 struct node {
 	int value;
 	int cnt;
-
 	node(int _value, int _cnt): value(_value), cnt(_cnt) {}
+	// 注意重载<号
 	bool operator<(const node& n)const {
 		return cnt == n.cnt ? value<n.value: cnt>n.cnt;
 	}
