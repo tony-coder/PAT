@@ -4,13 +4,13 @@ Solutions for PAT
 ### 熟练掌握知识点
 - 字符串
     - [ ] 模拟 熟练string相关方法的使用
-        - [x] 字符串与数字的相互准换 A1069 (C风格、c++ stringstream、c++11函数 stoi、to_string)
+        - [x] 字符串与数字的相互准换 A1069 (sprintf()和sscanf()、c++ stringstream、c++11函数 stoi、to_string)
         - [x] 大小写转换 tolower(), toupper() A1071
-        - [ ] 模拟科学计数法 A1073
+        - [x] 模拟科学计数法 A1073
         - [ ] 对比较复杂转换规则的模拟 数字转中文读法 A1082
-        - [ ] stringstream帮助分隔输入 A1100
-        - [ ] sscanf和sprintf的使用
-        - [ ] 思维 A1112
+        - [x] stringstream帮助分隔输入 A1100
+        - [x] sscanf和sprintf的使用
+        - [x] 思维 A1112
     - [x] 求公共前/后缀 A1077
     - * KMP
     - [ ] 回文串Manacher
@@ -104,11 +104,11 @@ Solutions for PAT
         - [x] 表达式树 2019年秋季考试 7-3 Postfix Expression (25分)
         - [ ] 给定一个表达式的二叉树形式，求中序表达式，并加括号 A1130
         - [ ] 哈夫曼树
-        - [ ] 判断完全二叉树 A1123
+        - [x] 判断完全二叉树 A1123
     <!-- - [ ] 欧拉路的判断应用 -->
-    - [ ] 平衡树
-        - [ ] 判断平衡性
-            - [ ] A1123
+    - [x] 平衡树 A1123
+        - [x] 判断平衡性
+            - [x]
         - [x] 建立平衡树
     - [x] 并查集
         - [x] 基础模板
@@ -138,7 +138,7 @@ Solutions for PAT
             - A1087
     - 经典问题
         - [ ] N皇后
-            - [ ] A1128
+            - [x] A1128
         - [ ] 汉诺塔
         - [ ] 装载问题
         - [ ] 全排列
@@ -182,13 +182,14 @@ Solutions for PAT
     - algorithm
         - max, max_element
         - min, min_element
-        - lower_bound
-        - upper_bound
+        - lower_bound, lower_bound(begin,end,num,greater<type>())
+        - upper_bound, upper_bound(begin,end,num,greater<type>())
         - binary_search
         - sort, stable_sort
         - fill
         - swap
         - reverse
+        - next_permutation
     - numeric
         - accumulate
 - C++11
