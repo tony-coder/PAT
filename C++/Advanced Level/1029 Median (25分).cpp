@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 2e5 + 10;
+const int maxn = 2e6 + 10;
 typedef long long LL;
 
 LL s1[maxn];
