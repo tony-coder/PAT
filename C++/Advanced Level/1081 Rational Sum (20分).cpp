@@ -46,6 +46,17 @@ int main(int argc, char const *argv[])
 			int tmp = __gcd(ans.numerator, ans.denominator);
 			ans.numerator /= tmp;
 			ans.denominator /= tmp;
+			// 测试用例:
+			// 2
+			// -2/3 1/3
+			// 对应输出应该为:
+			// -1/3
+			// 你的输出为:
+			// 1/-3
+			if (ans.denominator < 0) {
+				ans.denominator *= -1;
+				ans.numerator *= -1;
+			}
 			printf("%lld/%lld", ans.numerator, ans.denominator );
 		}
 		printf("\n");
