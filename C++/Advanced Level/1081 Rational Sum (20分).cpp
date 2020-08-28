@@ -1,65 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long LL;
-struct node
-{
-	LL numerator, denominator;
-} num[110];
+
+struct Fraction {
+	int up, down;
+};
+
+// 化简
+Fraction reduction(Fraction result) {
+	if (result.down < 0) {
+		result.up *= -1;
+		result.down *= -1;
+	}
+	if (result.up == 0)
+		result.down = 1;
+	else {
+		int t = __gcd(abs(result.up), abs(result.down));
+		result.up /= t;
+		result.down /= t;
+	}
+	return result;
+}
+
+// 分数加法
+Fraction add(Fraction f1, Fraction f2) {
+	Fraction result;
+	result.up = f1.up * f2.down + f2.up * f1.down;
+	result.down = f1.down * f2.down;
+	return reduction(result);
+}
+
+void show(Fraction result) {
+	result = reduction(result);
+	if (result.down == 1)
+		printf("%d\n", result.up);
+	else if (abs(result.up) > abs(result.down)) // 假分数
+		printf("%d %d/%d\n", result.up / result.down, result.up % result.down, result.down);
+	else
+		printf("%d/%d\n", result.up, result.down);
+}
 
 int main(int argc, char const *argv[])
 {
 	int N;
-	cin >> N;
-	LL gcd;
+	scanf("%d", &N);
+	Fraction result = {0, 1};
+	Fraction tmp;
 	for (int i = 0; i < N; ++i) {
-		scanf("%lld/%lld", &num[i].numerator, &num[i].denominator);
-		int t = __gcd(num[i].numerator, num[i].denominator);
-		num[i].numerator /= t;
-		num[i].denominator /= t;
+		scanf("%d/%d", &tmp.up, &tmp.down);
+		result = add(result, tmp);
 	}
-	node ans;
-	for (int i = 0; i < N; ++i) {
-		if (i == 0)
-			ans  = {num[i].numerator, num[i].denominator};
-		else {
-			gcd = __gcd(ans.denominator, num[i].denominator);
-			int t = (ans.denominator * num[i].denominator) / gcd;
-			ans.numerator = ans.numerator * (t / ans.denominator) + num[i].numerator * (t / num[i].denominator);
-			ans.denominator = t;
-
-			//对结果进行约分
-			t = __gcd(ans.numerator, ans.denominator);
-			ans.numerator /= t;
-			ans.denominator /= t;
-		}
-	}
-
-	if (ans.numerator == 0)
-		printf("0\n");
-	else {
-		if (ans.numerator / ans.denominator != 0)
-			printf("%lld", ans.numerator / ans.denominator);
-		if (ans.numerator / ans.denominator != 0 && ans.numerator - (ans.numerator / ans.denominator) * ans.denominator != 0)
-			printf(" ");
-		ans.numerator -= (ans.numerator / ans.denominator) * ans.denominator;
-		if (ans.numerator != 0) {
-			int tmp = __gcd(ans.numerator, ans.denominator);
-			ans.numerator /= tmp;
-			ans.denominator /= tmp;
-			// 测试用例:
-			// 2
-			// -2/3 1/3
-			// 对应输出应该为:
-			// -1/3
-			// 你的输出为:
-			// 1/-3
-			if (ans.denominator < 0) {
-				ans.denominator *= -1;
-				ans.numerator *= -1;
-			}
-			printf("%lld/%lld", ans.numerator, ans.denominator );
-		}
-		printf("\n");
-	}
+	show(result);
 	return 0;
 }
