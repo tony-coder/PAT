@@ -2,99 +2,83 @@
 using namespace std;
 typedef long long LL;
 
-struct node {
-	LL k, a, b; //k a/b
+struct Fraction {
+	LL up, down;
 };
 
-void simply(node& n) {
-	n.a += n.k * n.b;
-	n.k = 0;
-	LL tmp = abs(__gcd(n.a, n.b));
-	n.a /= tmp;
-	n.b /= tmp;
-	n.k += n.a / n.b;
-	n.a = n.a % n.b;
-}
-
-void add(node n1, node n2, node& ans) {
-	ans.k = n1.k + n2.k;
-	LL t = __gcd(n1.b, n2.b);
-	ans.b = n1.b * n2.b / t;
-	ans.a = n1.a * (ans.b / n1.b) + n2.a * (ans.b / n2.b);
-	simply(ans);
-}
-
-void sub(node n1, node n2, node& ans) {
-	n2.k = -n2.k;
-	n2.a = -n2.a;
-	add(n1, n2, ans);
-}
-
-void mul(node n1, node n2, node& ans) {
-	ans.a = (n1.a + n1.k * n1.b) * (n2.a + n2.k * n2.b);
-	ans.b = n1.b * n2.b;
-	simply(ans);
-}
-
-bool divi(node n1, node n2, node& ans) {
-	n1.a += n1.b * n1.k;
-	n2.a += n2.b * n2.k;
-	ans.a = n1.a * n2.b;
-	ans.b = n1.b * n2.a;
-	if (ans.b == 0)
-		return false;
-	else if (ans.b < 0) {
-		ans.b = -ans.b;
-		ans.a = -ans.a;
+Fraction reduction(Fraction result) {
+	if (result.down < 0) {
+		result.up *= -1;
+		result.down *= -1;
 	}
-	simply(ans);
-	return true;
+	if (result.up == 0)
+		result.down = 1;
+	else {
+		int t = __gcd(abs(result.up), abs(result.down));
+		result.up /= t;
+		result.down /= t;
+	}
+	return result;
 }
 
-void show(node& n) {
-	if (n.k < 0) {
-		if (n.a != 0)
-			printf("(%lld %lld/%lld)", n.k, abs(n.a), n.b );
-		else
-			printf("(%lld)", n.k );
-	} else if (n.k > 0) {
-		if (n.a != 0) {
-			printf("%lld %lld/%lld", n.k, n.a, n.b );
-		}
-		else
-			printf("%lld", n.k );
-	} else {
-		if (n.a != 0) {
-			if (n.a > 0)
-				printf("%lld/%lld", n.a, n.b);
-			else
-				printf("(%lld/%lld)", n.a, n.b );
-		}
-		else
-			printf("%lld", n.k);
-	}
+Fraction add(Fraction f1, Fraction f2) {
+	Fraction result;
+	result.up = f1.up * f2.down + f2.up * f1.down;
+	result.down = f1.down * f2.down;
+	return reduction(result);
+}
+
+Fraction sub(Fraction f1, Fraction f2) {
+	Fraction result;
+	result.up = f1.up * f2.down - f2.up * f1.down;
+	result.down = f1.down * f2.down;
+	return reduction(result);
+}
+
+Fraction mul(Fraction f1, Fraction f2) {
+	Fraction result;
+	result.up = f1.up * f2.up;
+	result.down = f1.down * f2.down;
+	return reduction(result);
+}
+
+Fraction div(Fraction f1, Fraction f2) {
+	Fraction result;
+	result.up = f1.up * f2.down;
+	result.down = f1.down * f2.up;
+	return reduction(result);
+}
+
+void show(Fraction result) {
+	result = reduction(result);
+	if (result.up < 0)
+		printf("(");
+	if (result.down == 1)
+		printf("%lld", result.up);
+	else if (abs(result.up) > abs(result.down))
+		printf("%lld %lld/%lld", result.up / result.down, abs(result.up) % result.down, result.down);
+	else
+		printf("%lld/%lld", result.up, result.down);
+	if (result.up < 0)
+		printf(")");
 }
 
 int main(int argc, char const *argv[])
 {
-	node n1 = {0, 0, 0}, n2 = {0, 0, 0};
-	scanf("%lld/%lld %lld/%lld", &n1.a, &n1.b, &n2.a, &n2.b);
-	simply(n1); simply(n2);
-	// printf("%d %d/%d %d %d/%d\n", n1.k, n1.a, n1.b, n2.k, n2.a, n2.b );
-	node ans = {0, 0, 0};
-	add(n1, n2, ans);
-	show(n1); printf(" + "); show(n2); printf(" = "); show(ans); printf("\n");
-	ans = {0, 0, 0};
-	sub(n1, n2, ans);
-	show(n1); printf(" - "); show(n2); printf(" = "); show(ans); printf("\n");
-	ans = {0, 0, 0};
-	mul(n1, n2, ans);
-	show(n1); printf(" * "); show(n2); printf(" = "); show(ans); printf("\n");
-	ans = {0, 0, 0};
-	if (divi(n1, n2, ans)) {
-		show(n1); printf(" / "); show(n2); printf(" = "); show(ans); printf("\n");
-	} else {
-		show(n1); printf(" / "); show(n2); printf(" = Inf"); printf("\n");
-	}
+	Fraction a, b;
+	scanf("%lld/%lld %lld/%lld", &a.up, &a.down, &b.up, &b.down);
+	// add
+	show(a); printf(" + "); show(b); printf(" = "); show(add(a, b)); printf("\n");
+	// sub
+	show(a); printf(" - "); show(b); printf(" = "); show(sub(a, b)); printf("\n");
+	// mul
+	show(a); printf(" * "); show(b); printf(" = "); show(mul(a, b)); printf("\n");
+	// div
+	show(a); printf(" / "); show(b); printf(" = ");
+	if (b.up == 0)
+		printf("Inf");
+	else
+		show(div(a, b));
+	printf("\n");
 	return 0;
 }
